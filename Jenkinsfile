@@ -1,7 +1,7 @@
-def project = 'PROJECT_ID'
+def project = 'DEVOPS'
 def  appName = 'gceme'
 def  feSvcName = "${appName}-frontend"
-def  imageTag = "gcr.io/${project}/${appName}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
+def  imageTag = "wsibprivateregistry.azurecr.io/${project}/${appName}:${env.BRANCH_NAME}.${env.BUILD_NUMBER}"
 
 pipeline {
   agent {
