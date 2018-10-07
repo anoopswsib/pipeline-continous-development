@@ -24,12 +24,12 @@ spec:
     - cat
     tty: true
   - name: gcloud
-    image: gcr.io/cloud-builders/gcloud
+    image: wsibprivateregistry.azurecr.io/cloud-builders/gcloud
     command:
     - cat
     tty: true
   - name: kubectl
-    image: gcr.io/cloud-builders/kubectl
+    image: wsibprivateregistry.azurecr.io/cloud-builders/kubectl
     command:
     - cat
     tty: true
@@ -61,7 +61,7 @@ spec:
       steps {
         container('kubectl') {
           // Change deployed image in canary to the one we just built
-          sh("sed -i.bak 's#gcr.io/cloud-solutions-images/gceme:1.0.0#${imageTag}#' ./k8s/canary/*.yaml")
+          sh("sed -i.bak 's#wsibprivateregistry.azurecr.io/cloud-solutions-images/gceme:1.0.0#${imageTag}#' ./k8s/canary/*.yaml")
           sh("kubectl --namespace=production apply -f k8s/services/")
           sh("kubectl --namespace=production apply -f k8s/canary/")
           sh("echo http://`kubectl --namespace=production get service/${feSvcName} -o jsonpath='{.status.loadBalancer.ingress[0].ip}'` > ${feSvcName}")
@@ -74,7 +74,7 @@ spec:
       steps{
         container('kubectl') {
         // Change deployed image in canary to the one we just built
-          sh("sed -i.bak 's#gcr.io/cloud-solutions-images/gceme:1.0.0#${imageTag}#' ./k8s/production/*.yaml")
+          sh("sed -i.bak 's#wsibprivateregistry.azurecr.io/cloud-solutions-images/gceme:1.0.0#${imageTag}#' ./k8s/production/*.yaml")
           sh("kubectl --namespace=production apply -f k8s/services/")
           sh("kubectl --namespace=production apply -f k8s/production/")
           sh("echo http://`kubectl --namespace=production get service/${feSvcName} -o jsonpath='{.status.loadBalancer.ingress[0].ip}'` > ${feSvcName}")
