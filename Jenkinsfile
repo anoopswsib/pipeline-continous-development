@@ -19,7 +19,7 @@ spec:
   serviceAccountName: cd-jenkins
   containers:
   - name: golang
-    image: golang:1.10
+    image: wsibprivateregistry.azurecr.io/golang:1.10
     command:
     - cat
     tty: true
